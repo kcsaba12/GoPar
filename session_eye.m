@@ -17,7 +17,9 @@ for i = 1:length(sequence)
     '14'
     send_trigger('fixation_cross', ioObj, out_address);                    % 0.2s                   FIX
     '15'
-    WaitSecs(timing('fixation'));                                          % 'fixation' s
+    if wait_and_check_keyboard(timing('fixation'))
+        return
+    end% 'fixation' s
     '16'
     % Display task for 'eye' s
     if sequence(i) == 0
