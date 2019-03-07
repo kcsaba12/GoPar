@@ -1,0 +1,14 @@
+Üdv!
+A felvétel során 4 különbözo feladatot kell végrehajtania:\n
+- balkéz lassú felemelése\n
+- balkéz felemelésének elképzelése\n
+- jobbkéz lassú felemelése\n
+- jobbkéz felemelésének elképzelése\n
+
+#
+
+Teszt2
+
+#
+
+Teszt3

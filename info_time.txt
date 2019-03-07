@@ -1,0 +1,111 @@
+Session time
+
+PART I
+
+    Session Eye (4 diff. label, 5 run: 20 sample)
+    ---------------------
+        Open:   4s
+        FC :    60s
+        Close:  4s
+        FC:     60s
+        -----------
+                128s (2.2m)
+
+    Session Hand (4 diff. label, 5 run: 20 sample)
+    ---------------------
+        Left ME:    4s
+        FC:         4s
+        Left MI:    4s
+        FC:         4s
+        Right ME:   4s
+        FC:         4s
+        Right MI:   4s
+        FC:         4s
+        --------------
+                    32s x 4 : 128s (2.2m)
+
+    Session foot (4 diff. label, 5 run: 20 sample)
+    ---------------------
+        Left ME:    4s
+        FC:         4s
+        Left MI:    4s
+        FC:         4s
+        Right ME:   4s
+        FC:         4s
+        Right MI:   4s
+        FC:         4s
+        --------------
+                    32s x 4 : 128s (2.2m)
+
+    Session mixed mi (4 diff. label, 5 run: 20 sample)
+    ---------------------
+        Left Hand:  4s
+        FC:         4s
+        Left Foot:  4s
+        FC:         4s
+        Right Hand: 4s
+        FC:         4s
+        Right Foot: 4s
+        FC:         4s
+        --------------
+                    32s x 5: 160s (2.7m)
+    ------------------------------------------
+    x 5: 800s (13.4m) - (4 diff. label, 25 run: 100 sample)
+
+PART II.
+
+    Session mixed mi (4 diff. label, 5 run: 20 sample)
+    ---------------------
+        Left Hand:  4s
+        FC:         4s
+        Left Foot:  4s
+        FC:         4s
+        Right Hand: 4s
+        FC:         4s
+        Right Foot: 4s
+        FC:         4s
+        --------------
+                    32s x 5: 160s (2.7m)
+------------------------------------------
+x 6: 960s (16m) - (4 diff. label, 30 run: 120 sample)
+
+PART III.
+    
+    Session mixed mi (4 diff. label, 5 run: 20 sample)
+    ---------------------
+        Left Hand:  4s
+        FC:         4s
+        Left Foot:  4s
+        FC:         4s
+        Right Hand: 4s
+        FC:         4s
+        Right Foot: 4s
+        FC:         4s
+        --------------
+                    32s x 5: 160s (2.7m)
+------------------------------------------
+x 6: 960s (16m) - (4 diff. label, 30 run: 120 sample)
+
+    Session Eye (4 diff. label, 5 run: 20 sample)
+    ---------------------
+            Open:   4s
+            FC :    60s
+            Close:  4s
+            FC:     60s
+            -----------
+                    128s (2.2m)
+
+Time summary
+PART I      -   20m
+PART II     -   16m
+PART III    -   18.2m
+---------------------
+SUM         -   54.2m + pauses ~ 60m
+
+
+
+
+Sample count
+
+ME:
+Open
