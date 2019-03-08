@@ -1,4 +1,4 @@
-function [ioObj, out_address, in_address] = init_parallel_port(in_port, out_port)
+function [ioObj, out_address, in_address] = init_parallel_port()
     ioObj = io64;
     status = io64(ioObj);
     out_address = hex2dec('378');

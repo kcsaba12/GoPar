@@ -1,8 +1,6 @@
 function send_trigger(option, ioObj, out_address)
-%function send_trigger(option, ioObj, out_address)
-
 % This function sends the type of the trigger to the parallel port
-% Approximate running time: ~0.2s
+% Approximate running time: ~0.2s - WHY????
 % 
 % Scenario:
 % - Session start
@@ -50,7 +48,7 @@ switch option
         error('Wrong input parameter in send_trigger function');
 end %switch
 '143'
-WaitSecs(0.2);
+WaitSecs(0.2); % why????????????????????????
 '144'
 io64(ioObj, out_address, 0);
 '145'
