@@ -1,0 +1,16 @@
+# Please specify folders and files, which are not important to upload...
+
+
+
+# folders
+
+
+# files
+.directory
+
+*~
+
+~*
+*.[oa]
+
+.asv
