@@ -18,33 +18,38 @@ for i = 1:length(sequence)
     send_trigger('fixation_cross', ioObj, out_address);                    % 0.2s                   FIX
     '15'
     if wait_and_check_keyboard(timing('fixation'))
+        new_scene('end', window_handle);
         return
     end% 'fixation' s
     '16'
     % Display task for 'eye' s
     if sequence(i) == 0
-        % Open eye
-        '17'
-        send_trigger('open_eye', ioObj, out_address);                      % 0.2s                   START
-        '18'
-        new_scene('open_eye', window_handle, rect);
-        '19'
+        task = 'open';
     else
-        % Close eye
-        send_trigger('closed_eye', ioObj, out_address);                    % 0.2s
-        '19'
-        new_scene('closed_eye', window_handle, rect);
-        '20'
+        task = 'closed';
     end
     
+    % Open eye
+    '17'
+    send_trigger(task + '_eye', ioObj, out_address);                      % 0.2s                   START
+    '18'
+    new_scene(task + '_eye', window_handle, rect);
+    '19'
+    
     % Wait than send trigger
-    WaitSecs(timing('eye'));
+    if wait_and_check_keyboard(timing('eye'))
+        new_scene('end', window_handle);
+        return
+    end
     '21'
     send_trigger('task_end', ioObj, out_address);                          % 0.2s                   END
     '22'
     Beeper('low');
     '23'
-    WaitSecs(0.2);                                                         % 0.2s
+    if wait_and_check_keyboard(0.2)
+        new_scene('end', window_handle);
+        return
+    end                                                                    % 0.2s
     '24'
 end
 '25'
