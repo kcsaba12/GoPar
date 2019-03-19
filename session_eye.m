@@ -4,7 +4,7 @@ function session_eye(window_handle, rect, ioObj, in_address, out_address, timing
 new_scene('task_eye', window_handle, rect);
 '11'
 if (wait_for_user_response(in_address))
-        new_scene('end', window_handle);
+        new_scene('end', window_handle, rect);
         return
 end
 '12'
@@ -17,8 +17,8 @@ for i = 1:length(sequence)
     '14'
     send_trigger('fixation_cross', ioObj, out_address);                    % 0.2s                   FIX
     '15'
-    if wait_and_check_keyboard(timing('fixation'))
-        new_scene('end', window_handle);
+    if wait_and_check_esc(timing('fixation'))
+        new_scene('end', window_handle, rect);
         return
     end% 'fixation' s
     '16'
@@ -31,14 +31,14 @@ for i = 1:length(sequence)
     
     % Open eye
     '17'
-    send_trigger(task + '_eye', ioObj, out_address);                      % 0.2s                   START
+    send_trigger([task, '_eye'], ioObj, out_address);                      % 0.2s                   START
     '18'
-    new_scene(task + '_eye', window_handle, rect);
+    new_scene([task, '_eye'], window_handle, rect);
     '19'
     
     % Wait than send trigger
-    if wait_and_check_keyboard(timing('eye'))
-        new_scene('end', window_handle);
+    if wait_and_check_esc(timing('eye'))
+        new_scene('end', window_handle, rect);
         return
     end
     '21'
@@ -46,8 +46,8 @@ for i = 1:length(sequence)
     '22'
     Beeper('low');
     '23'
-    if wait_and_check_keyboard(0.2)
-        new_scene('end', window_handle);
+    if wait_and_check_esc(0.2)
+        new_scene('end', window_handle, rect);
         return
     end                                                                    % 0.2s
     '24'

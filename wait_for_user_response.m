@@ -22,7 +22,7 @@ function stop = wait_for_user_response(in_address)
 %         %stop = false;
 %     else
         [secs, keyCode] = KbWait; % Wait until at least one key is pressed and return its time.     
-        if find(keyCode) > 40
+        if find(keyCode) == 27
             stop = true;
         else
             stop = false;

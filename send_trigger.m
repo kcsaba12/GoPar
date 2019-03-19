@@ -8,6 +8,8 @@ function send_trigger(option, ioObj, out_address)
 % - Task
 % - Task end
 % - Session end
+
+%option
 switch option
     case 'fixation_cross'
         '140'
@@ -27,7 +29,7 @@ switch option
         io64(ioObj,out_address,7);
     case 'right_foot_m'
         io64(ioObj,out_address,8);
-    case 'rigth_foot_mi'
+    case 'right_foot_mi'
         io64(ioObj,out_address,9);
     case 'left_foot_m'
         io64(ioObj,out_address,10);
