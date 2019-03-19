@@ -1,7 +1,10 @@
 %% EEG / BCI paradigm v200 
 % config variables
-TEST = true;
+clear all;
+close all;
+
 DEBUG = true;
+lang = 'eng'; % eng, hun
 
 % constants
 SEQUENCE_FOLDER = 'sequences/';
@@ -10,17 +13,21 @@ FOOT = 'foot';
 MIXED = 'hand_foot';
 MOTOR_MOVEMENT = '_m';
 IMAGINED_MOVEMENT = '_mi';
+global LANGUAGE;
 
 %% INIT
+LANGUAGE = load_language(lang);
 if ~exist('DEBUG','var')
     DEBUG = false;
 end
 
 addpath(SEQUENCE_FOLDER);
+addpath('C:\Users\Csabi\AppData\Roaming\MathWorks\MATLAB Add-Ons\Collections\Psychtoolbox-3\Psychtoolbox-3-Psychtoolbox-3-1621645\Psychtoolbox\PsychBasic\MatlabWindowsFilesR2007a\');
 
 time_keySet = {'run','fixation','pause','eye'};
-if TEST
-    time_valueSet = [.25,.25,.25,.25];
+if DEBUG
+    deb_time = 1;
+    time_valueSet = [deb_time,deb_time,deb_time,deb_time];
 else
     time_valueSet = [3.8,3,3,60]; % run:3.8,fixation:3,pause:3,eye:60
 end
@@ -48,12 +55,10 @@ try  % Time info
     session_eye(window_handle, rect, ioObj, in_address, out_address, timing, [0,1]);
 
     %%  ACT 2 - Right / Left hand 
-    HAND
     seq = load('sequence_hand.mat');
     session(window_handle, rect, ioObj, in_address, out_address, timing, seq.sequence, HAND, {MOTOR_MOVEMENT, IMAGINED_MOVEMENT});
     
     %%  ACT 3 - Right / Left foot
-    FOOT
     seq = load('sequence_foot.mat');
     session(window_handle, rect, ioObj, in_address, out_address, timing, seq.sequence, FOOT, {MOTOR_MOVEMENT, IMAGINED_MOVEMENT});
    

@@ -4,7 +4,7 @@ function session_eye(window_handle, rect, ioObj, in_address, out_address, timing
 new_scene('task_eye', window_handle, rect);
 '11'
 if (wait_for_user_response(in_address))
-        new_scene('end', window_handle, rect);
+          new_scene('end', window_handle, rect);
         return
 end
 '12'

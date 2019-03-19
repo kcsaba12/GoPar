@@ -2,6 +2,7 @@ function [w, rect] = init_screen(debug)
      if ~exist('debug','var')
           debug = false;
      end
+     
     Screen('Preference', 'SkipSyncTests', 2);
     
     if debug
