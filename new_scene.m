@@ -14,7 +14,6 @@ function new_scene(option, w, rect)
         case 'thanks'
             Screen('FillRect',w,black);        
             DrawFormattedText(w, getfield(LANGUAGE, option), 'center', 'center',[255 255 255 255]);
-            
         case 'task_eye'
             Screen('FillRect',w,black);        
             DrawFormattedText(w, getfield(LANGUAGE, option), 'center', 'center',[255 255 255 255]);
@@ -53,18 +52,12 @@ function new_scene(option, w, rect)
             DrawFormattedText(w, getfield(LANGUAGE, option), 'center', 'center',[255 255 255 255]);
             
         case '3_2_1'
-            Screen('FillRect',w,black);
-            DrawFormattedText(w, '3', 'center', 'center',[255 255 255 255]);
-            WaitSecs(1);
-            Screen('Flip',w, [],1);
-            Screen('FillRect',w,black);
-            DrawFormattedText(w, '2', 'center', 'center',[255 255 255 255]);
-            WaitSecs(1);
-            Screen('Flip',w, [],1);
-            Screen('FillRect',w,black);
-            DrawFormattedText(w, '1', 'center', 'center',[255 255 255 255]);
-            WaitSecs(1);
-            Screen('Flip',w, [],1);
+            for i=3:-1:1
+                Screen('FillRect',w,black);
+                DrawFormattedText(w, int2str(i), 'center', 'center',[255 255 255 255]);
+                WaitSecs(1);
+                Screen('Flip',w, [],1);
+            end
             Screen('FillRect',w,black);
             WaitSecs(1);
             

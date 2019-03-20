@@ -3,7 +3,8 @@
 clear all;
 close all;
 
-DEBUG = true;
+% DEBUG = true;
+% USE_SHORT_TIME = true;
 lang = 'eng'; % eng, hun
 
 % constants
@@ -20,12 +21,14 @@ LANGUAGE = load_language(lang);
 if ~exist('DEBUG','var')
     DEBUG = false;
 end
+if ~exist('USE_SHORT_TIME','var')
+    USE_SHORT_TIME = DEBUG;
+end
 
 addpath(SEQUENCE_FOLDER);
-addpath('C:\Users\Csabi\AppData\Roaming\MathWorks\MATLAB Add-Ons\Collections\Psychtoolbox-3\Psychtoolbox-3-Psychtoolbox-3-1621645\Psychtoolbox\PsychBasic\MatlabWindowsFilesR2007a\');
-
 time_keySet = {'run','fixation','pause','eye'};
-if DEBUG
+
+if USE_SHORT_TIME
     deb_time = 1;
     time_valueSet = [deb_time,deb_time,deb_time,deb_time];
 else
@@ -66,7 +69,7 @@ try  % Time info
 
     for j = 0:2
         for i = 1:5
-            show_counter(i+j*5,window_handle,rect);
+            %show_counter(i+j*5,window_handle,rect);
             if wait_and_check_esc(1)
                 new_scene('end', window_handle, rect);
                 return
