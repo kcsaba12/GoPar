@@ -24,7 +24,7 @@ function new_scene(option, w, rect)
             Screen('FillRect',w,black);        
             DrawFormattedText(w, getfield(LANGUAGE, option), 'center', 'center',[255 255 255 255]);
         case 'task_hand_foot'
-           Screen('FillRect',w,black);        
+            Screen('FillRect',w,black);        
             DrawFormattedText(w, getfield(LANGUAGE, option), 'center', 'center',[255 255 255 255]);
         case 'right_hand_m_text'
             Screen('FillRect',w,black);
@@ -42,7 +42,7 @@ function new_scene(option, w, rect)
             Screen('FillRect',w,black);
             DrawFormattedText(w, getfield(LANGUAGE, option), 'center', 'center',[255 255 255 255]);
         case 'right_foot_mi_text'
-            SScreen('FillRect',w,black);
+            Screen('FillRect',w,black);
             DrawFormattedText(w, getfield(LANGUAGE, option), 'center', 'center',[255 255 255 255]);
         case 'left_foot_m_text'
            Screen('FillRect',w,black);

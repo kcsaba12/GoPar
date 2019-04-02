@@ -3,8 +3,10 @@
 clear all;
 close all;
 
-% DEBUG = true;
-% USE_SHORT_TIME = true;
+DEBUG = true;
+% USE_SHORT_TIME = false;  
+% addpath('C:\Users\Csabi\AppData\Roaming\MathWorks\MATLAB Add-Ons\Collections\Psychtoolbox-3\Psychtoolbox-3-Psychtoolbox-3-1621645\Psychtoolbox\PsychBasic\MatlabWindowsFilesR2007a\');
+
 lang = 'eng'; % eng, hun
 
 % constants
@@ -84,7 +86,7 @@ try  % Time info
     %%  FINALE
     send_trigger('paradigm_end', ioObj, out_address); 
     new_scene('thanks', window_handle, rect);
-    if wait_and_check_esc(pause)
+    if wait_and_check_esc(timing('pause'))
         new_scene('end', window_handle, rect);
         return
     end

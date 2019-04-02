@@ -53,10 +53,10 @@ function language = load_language(lang)
             language.right_hand_mi_text = 'Imagine RIGHT hand constriction\n\n';
             language.left_hand_mi_text = 'Imagine LEFT hand constriction\n\n';
             
-            language.right_hand_m_text = 'Tread with RIGHT foot\n\n';
-            language.left_hand_m_text = 'Tread with LEFT foot\n\n';
-            language.right_hand_mi_text = 'Imagine RIGHT foot treading\n\n';
-            language.left_hand_mi_text = 'Imagine LEFT foot treading\n\n';
+            language.right_foot_m_text = 'Tread with RIGHT foot\n\n';
+            language.left_foot_m_text = 'Tread with LEFT foot\n\n';
+            language.right_foot_mi_text = 'Imagine RIGHT foot treading\n\n';
+            language.left_foot_mi_text = 'Imagine LEFT foot treading\n\n';
 
 
         case 'hun'
@@ -109,10 +109,10 @@ function language = load_language(lang)
             language.right_hand_mi_text = 'Elképzelt jobb ököl szorítás\n\n';
             language.left_hand_mi_text = 'Elképzelt bal ököl szorítás\n\n';
             
-            language.right_hand_m_text = 'Jobb láb taposás\n\n';
-            language.left_hand_m_text = 'Bal láb taposás\n\n';
-            language.right_hand_mi_text = 'Elképzelt jobb láb taposás\n\n';
-            language.left_hand_mi_text = 'Elképzelt bal láb taposás\n\n';
+            language.right_foot_m_text = 'Jobb láb taposás\n\n';
+            language.left_foot_m_text = 'Bal láb taposás\n\n';
+            language.right_foot_mi_text = 'Elképzelt jobb láb taposás\n\n';
+            language.left_foot_mi_text = 'Elképzelt bal láb taposás\n\n';
             
         otherwise
             error([lang, ' language is not defined.'])
