@@ -59,7 +59,6 @@ try  % Time info
     %%  ACT 1 - Eyes open / eyes closed
     session_eye(window_handle, rect, ioObj, in_address, out_address, timing, [0,1]);
     
-    for i = 1:2
     %%  ACT 2 - Right / Left hand 
     seq = load('sequence_hand.mat');
     session(window_handle, rect, ioObj, in_address, out_address, timing, seq.sequence, HAND, {MOTOR_MOVEMENT, IMAGINED_MOVEMENT});
@@ -67,12 +66,11 @@ try  % Time info
     %%  ACT 3 - Right / Left foot
     seq = load('sequence_foot.mat');
     session(window_handle, rect, ioObj, in_address, out_address, timing, seq.sequence, FOOT, {MOTOR_MOVEMENT, IMAGINED_MOVEMENT});
-    end
     
     %%  ACT 4 - Imagined MIXED 
 
     for j = 0:1
-        for i = 1:4
+        for i = 1:5
             %show_counter(i+j*5,window_handle,rect);
             if wait_and_check_esc(1)
                 new_scene('end', window_handle, rect);
