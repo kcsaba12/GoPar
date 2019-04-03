@@ -1,4 +1,4 @@
-%% EEG / BCI paradigm v200 
+%% EEG / BCI paradigm v2
 % config variables
 clear all;
 close all;
@@ -7,7 +7,7 @@ DEBUG = true;
 % USE_SHORT_TIME = false;  
 % addpath('C:\Users\Csabi\AppData\Roaming\MathWorks\MATLAB Add-Ons\Collections\Psychtoolbox-3\Psychtoolbox-3-Psychtoolbox-3-1621645\Psychtoolbox\PsychBasic\MatlabWindowsFilesR2007a\');
 
-lang = 'eng'; % eng, hun
+lang = 'hun'; % eng, hun
 
 % constants
 SEQUENCE_FOLDER = 'sequences/';
@@ -58,7 +58,8 @@ try  % Time info
 
     %%  ACT 1 - Eyes open / eyes closed
     session_eye(window_handle, rect, ioObj, in_address, out_address, timing, [0,1]);
-
+    
+    for i = 1:2
     %%  ACT 2 - Right / Left hand 
     seq = load('sequence_hand.mat');
     session(window_handle, rect, ioObj, in_address, out_address, timing, seq.sequence, HAND, {MOTOR_MOVEMENT, IMAGINED_MOVEMENT});
@@ -66,11 +67,12 @@ try  % Time info
     %%  ACT 3 - Right / Left foot
     seq = load('sequence_foot.mat');
     session(window_handle, rect, ioObj, in_address, out_address, timing, seq.sequence, FOOT, {MOTOR_MOVEMENT, IMAGINED_MOVEMENT});
-   
-    %%  ACT 4 - Right / Left, hand / foot 
+    end
+    
+    %%  ACT 4 - Imagined MIXED 
 
-    for j = 0:2
-        for i = 1:5
+    for j = 0:1
+        for i = 1:4
             %show_counter(i+j*5,window_handle,rect);
             if wait_and_check_esc(1)
                 new_scene('end', window_handle, rect);
