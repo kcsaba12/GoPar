@@ -11,10 +11,8 @@ function send_trigger(option, ioObj, out_address)
 
 %option
 switch option
-    case 'fixation_cross'
-        '140'
+    case 'rest'
         io64(ioObj,out_address,1);
-        '141'
     case 'open_eye'
         io64(ioObj,out_address,2);
     case 'closed_eye'
@@ -45,13 +43,13 @@ switch option
         io64(ioObj,out_address,15);
     case 'session_start'
         io64(ioObj,out_address,16);
+    case 'esc_record'
+        io64(ioObj,out_address,17);
     otherwise
-        '142'
         error('Wrong input parameter in send_trigger function');
 end %switch
-'143'
-WaitSecs(0.2); % why????????????????????????
-'144'
+
+WaitSecs(0.2);
 io64(ioObj, out_address, 0);
-'145'
+
 end

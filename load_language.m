@@ -5,12 +5,12 @@ function language = load_language(lang)
     switch lang
         case 'eng'
             end_message = ...
-                ['Please do not turn away from the screen and try not to blink during the tasks\n',...
+                ['\nPlease do not turn away from the screen and try not to blink during the tasks\n\n',...
                  'only in the small breaks, when task description appeares.\n\n',...
-                 'Tell us if you are ready!'];
+                 '\nTell us if you are ready!'];
 
             middle_message = ...
-                ['We are going to display the upcoming task,\n\n',...
+                ['\nWe are going to display the upcoming task,\n\n',...
                  'after that a fixation cross will appear for 4 seconds.  \n\n',...
                  'You have to execute the appropriate task during this time\n\n'];
              
@@ -48,25 +48,25 @@ function language = load_language(lang)
 
             language.welcome = 'Hi!';
             
-            language.right_hand_m_text = 'Constrict RIGHT hand\n\n';
-            language.left_hand_m_text = 'Constrict LEFT hand\n\n';
-            language.right_hand_mi_text = 'Imagine RIGHT hand constriction\n\n';
-            language.left_hand_mi_text = 'Imagine LEFT hand constriction\n\n';
+            language.right_hand_m_text = 'Constrict RIGHT hand';
+            language.left_hand_m_text = 'Constrict LEFT hand';
+            language.right_hand_mi_text = 'Imagine RIGHT hand constriction';
+            language.left_hand_mi_text = 'Imagine LEFT hand constriction';
             
-            language.right_foot_m_text = 'Tread with RIGHT foot\n\n';
-            language.left_foot_m_text = 'Tread with LEFT foot\n\n';
-            language.right_foot_mi_text = 'Imagine RIGHT foot treading\n\n';
-            language.left_foot_mi_text = 'Imagine LEFT foot treading\n\n';
+            language.right_foot_m_text = 'Tread with RIGHT foot';
+            language.left_foot_m_text = 'Tread with LEFT foot';
+            language.right_foot_mi_text = 'Imagine RIGHT foot treading';
+            language.left_foot_mi_text = 'Imagine LEFT foot treading';
 
 
         case 'hun'
             end_message = ...
-                ['Ne fordulj el a képernyõ elõl és kérlek a kereszt\n',...
+                ['\nNe fordulj el a képernyõ elõl és kérlek a kereszt\n\n',...
                  'jelenléte alatt lehetõleg ne, vagy minél kevesebbet pislogj!\n\n',...
-                 'Szólj ha készen állsz!'];
+                 '\nSzólj ha készen állsz!'];
 
             middle_message = ...
-                ['A feladatokat szövegesen jelenítjük meg\n\n',...
+                ['\nA feladatokat szövegesen jelenítjük meg\n\n',...
                  'ezt követõen egy kereszt jelenik meg 4 másodpercig,  \n\n',...
                  'ez idõ alatt kell végrehajtanod a feladatot! \n\n'];
 
@@ -104,15 +104,15 @@ function language = load_language(lang)
 
             language.welcome = 'Üdv!';
             
-            language.right_hand_m_text = 'Jobb ököl szorítás\n\n';
-            language.left_hand_m_text = 'Bal ököl szorítás\n\n';
-            language.right_hand_mi_text = 'Elképzelt jobb ököl szorítás\n\n';
-            language.left_hand_mi_text = 'Elképzelt bal ököl szorítás\n\n';
+            language.right_hand_m_text = 'Jobb ököl szorítás';
+            language.left_hand_m_text = 'Bal ököl szorítás';
+            language.right_hand_mi_text = 'Elképzelt jobb ököl szorítás';
+            language.left_hand_mi_text = 'Elképzelt bal ököl szorítás';
             
-            language.right_foot_m_text = 'Jobb láb taposás\n\n';
-            language.left_foot_m_text = 'Bal láb taposás\n\n';
-            language.right_foot_mi_text = 'Elképzelt jobb láb taposás\n\n';
-            language.left_foot_mi_text = 'Elképzelt bal láb taposás\n\n';
+            language.right_foot_m_text = 'Jobb láb taposás';
+            language.left_foot_m_text = 'Bal láb taposás';
+            language.right_foot_mi_text = 'Elképzelt jobb láb taposás';
+            language.left_foot_mi_text = 'Elképzelt bal láb taposás';
             
         otherwise
             error([lang, ' language is not defined.'])

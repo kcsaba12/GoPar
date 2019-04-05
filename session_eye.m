@@ -1,58 +1,51 @@
 function session_eye(window_handle, rect, ioObj, in_address, out_address, timing, sequence)
 % Present the task
-'10'
+
 new_scene('task_eye', window_handle, rect);
-'11'
+
 if (wait_for_user_response(in_address))
-          new_scene('end', window_handle, rect);
-        return
+    new_scene('end', window_handle, rect);
+    return
 end
-'12'
+
 send_trigger('session_start', ioObj, out_address); 
 new_scene('3_2_1', window_handle, rect);
-'13'
+
 for i = 1:length(sequence)
- 
-    new_scene('fixation_cross', window_handle, rect);
-    '14'
-    send_trigger('fixation_cross', ioObj, out_address);                    % 0.2s                   FIX
-    '15'
-    if wait_and_check_esc(timing('fixation'))
-        new_scene('end', window_handle, rect);
-        return
-    end% 'fixation' s
-    '16'
     % Display task for 'eye' s
     if sequence(i) == 0
         task = 'open';
     else
         task = 'closed';
     end
-    
-    % Open eye
-    '17'
-    send_trigger([task, '_eye'], ioObj, out_address);                      % 0.2s                   START
-    '18'
+ 
     new_scene([task, '_eye'], window_handle, rect);
-    '19'
+    send_trigger('rest', ioObj, out_address);                    % 0.2s                   FIX
+
+    if wait_and_check_esc(timing('fixation') - 0.2)
+        new_scene('end', window_handle, rect);
+        return
+    end% 'fixation' s
     
+    new_scene('fixation_cross', window_handle, rect);
+    send_trigger([task, '_eye'], ioObj, out_address);                      % 0.2s                   START
+
     % Wait than send trigger
-    if wait_and_check_esc(timing('eye'))
+    if wait_and_check_esc(timing('eye') - 0.2)
         new_scene('end', window_handle, rect);
         return
     end
-    '21'
-    send_trigger('task_end', ioObj, out_address);                          % 0.2s                   END
-    '22'
+    
     Beeper('low');
-    '23'
-    if wait_and_check_esc(0.2)
-        new_scene('end', window_handle, rect);
-        return
-    end                                                                    % 0.2s
-    '24'
+%     send_trigger('task_end', ioObj, out_address);                          % 0.2s                   END
+
+%     if wait_and_check_esc(0.2)
+%         new_scene('end', window_handle, rect);
+%         return
+%     end                                                                    % 0.2s
+
 end
-'25'
+
 send_trigger('session_end', ioObj, out_address);
-'26'
+
 end
