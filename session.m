@@ -24,7 +24,7 @@ for seq = sequence
     end
     
     tsk = task;
-    if contains(task, '_')
+    if  contains(task, '_') % ~isempty(strfind(task, '_'))
         if idivide(seq-1, int8(2)) < 1
             tsk = 'hand';
         else 
