@@ -25,15 +25,9 @@ IMAGINED_MOVEMENT = '_mi';
 SEQ_LENGTH = 4;
 NUM_MIXED = 10;
 global LANGUAGE;
-global TASK_LIST;
 
 %% INIT
 LANGUAGE = load_language(lang);
-TASK_LIST = {'welcome', 'thanks', 'task_eye', 'task_hand', 'task_foot', ...
-        'task_hand_foot', 'right_hand_m_text', 'right_hand_mi_text', ...
-        'left_hand_m_text', 'left_hand_mi_text', 'right_foot_m_text', ...
-        'right_foot_mi_text', 'left_foot_m_text', 'left_foot_mi_text', ...
-        'open_eye', 'closed_eye'};
 
 if ~exist('DEBUG','var')
     DEBUG = false;
