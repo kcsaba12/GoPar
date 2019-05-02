@@ -1,4 +1,4 @@
-function [w, rect] = init_screen(debug)
+function [w, rect] = init_screen(text_size, debug)
      if ~exist('debug','var')
           debug = false;
      end
@@ -11,6 +11,7 @@ function [w, rect] = init_screen(debug)
     else
         [w,rect] = Screen ('OpenWindow', 0);
         HideCursor;
+        Screen('TextSize', w , text_size);
     end
     
 end

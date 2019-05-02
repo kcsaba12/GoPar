@@ -1,12 +1,13 @@
 %% EEG / BCI paradigm
 % author: András Bohn, bohn.andras.benedek@hallgato.ppke.hu
 % upgrader: Csaba Köllõd, kollod.csaba@itk.ppke.hu
-% version: 3.1
+% version: 3.2
 clear all;
 close all;
 
 % THINGS TO SET:
 lang = 'hun'; % eng, hun
+text_size = 40; % MAX 40
 CONTINUE_FROM_MIXED_ITERATION = 0; % if something goes wrong, and you have to restart the paradigm, 
                                    % you can specify where do you want to continue...
                                    
@@ -31,7 +32,7 @@ LANGUAGE = load_language(lang);
 TASK_LIST = {'welcome', 'thanks', 'task_eye', 'task_hand', 'task_foot', ...
         'task_hand_foot', 'right_hand_m_text', 'right_hand_mi_text', ...
         'left_hand_m_text', 'left_hand_mi_text', 'right_foot_m_text', ...
-        'right_foot_im_text', 'left_foot_m_text', 'left_foot_mi_text', ...
+        'right_foot_mi_text', 'left_foot_m_text', 'left_foot_mi_text', ...
         'open_eye', 'closed_eye'};
 
 if ~exist('DEBUG','var')
@@ -62,7 +63,7 @@ mixed_ind = 0;
 try  % Time info    
 
     [ioObj, out_address, in_address] = init_parallel_port();
-    [window_handle, rect] = init_screen(DEBUG);
+    [window_handle, rect] = init_screen(text_size, DEBUG);
     %sound_handle = init_soundout();
 
     new_scene('black', window_handle, rect);

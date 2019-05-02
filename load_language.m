@@ -108,15 +108,15 @@ function language = load_language(lang)
 
             language.welcome = 'Üdv!';
             
-            language.right_hand_m_text = 'Jobb ököl szorítás';
-            language.left_hand_m_text = 'Bal ököl szorítás';
-            language.right_hand_mi_text = 'Elképzelt jobb ököl szorítás';
-            language.left_hand_mi_text = 'Elképzelt bal ököl szorítás';
+            language.right_hand_m_text = 'JOBB ököl szorítás';
+            language.left_hand_m_text = 'BAL ököl szorítás';
+            language.right_hand_mi_text = 'Elképzelt JOBB ököl szorítás';
+            language.left_hand_mi_text = 'Elképzelt BAL ököl szorítás';
             
-            language.right_foot_m_text = 'Jobb láb taposás';
-            language.left_foot_m_text = 'Bal láb taposás';
-            language.right_foot_mi_text = 'Elképzelt jobb láb taposás';
-            language.left_foot_mi_text = 'Elképzelt bal láb taposás';
+            language.right_foot_m_text = 'JOBB láb taposás';
+            language.left_foot_m_text = 'BAL láb taposás';
+            language.right_foot_mi_text = 'Elképzelt JOBB láb taposás';
+            language.left_foot_mi_text = 'Elképzelt BAL láb taposás';
             
             language.open_eye = 'Nézd a keresztet 1 percig';
             language.closed_eye = 'Csukd be a szemed 1 percre';
