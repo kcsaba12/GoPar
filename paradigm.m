@@ -8,13 +8,15 @@ close all;
 % THINGS TO SET:
 lang = 'hun'; % eng, hun
 text_size = 40; % MAX 40
+setup = 'portable'; % lab, protable
 CONTINUE_FROM_MIXED_ITERATION = 0; % if something goes wrong, and you have to restart the paradigm, 
                                    % you can specify where do you want to continue...
                                    
 %% other parameters
-% DEBUG = true;
-% USE_SHORT_TIME = false;  
-% addpath('C:\Users\Csabi\AppData\Roaming\MathWorks\MATLAB Add-Ons\Collections\Psychtoolbox-3\Psychtoolbox-3-Psychtoolbox-3-1621645\Psychtoolbox\PsychBasic\MatlabWindowsFilesR2007a\');
+DEBUG = true;
+% USE_SHORT_TIME = false;
+
+Psycho_path = 'C:\Users\Csabi\AppData\Roaming\MathWorks\MATLAB Add-Ons\Collections\Psychtoolbox-3\Psychtoolbox-3-Psychtoolbox-3-1621645\Psychtoolbox\PsychBasic\MatlabWindowsFilesR2007a\';
 
 % constants
 HAND = 'hand';
@@ -55,8 +57,25 @@ mixed_ind = 0;
 
 %%  PRELUDE - Initialize the environment
 try  % Time info    
-
+    trigger_sender.setup = setup;
     [ioObj, out_address, in_address] = init_parallel_port();
+    trigger_sender.in_address = in_address;
+    switch setup
+        case 'portable'
+            addpath(Psycho_path);
+            rcc = bv_rcc('localhost', 6700);
+            open_recorder(rcc);
+            view_impedance(rcc);
+            trigger_sender.bv_rcc = rcc;
+            
+        case 'lab'
+            trigger_sender.ioObj = ioObj;
+            trigger_sender.out_address = out_address;
+           
+        otherwise
+            error([setup, ' setup is not defined.'])
+    end
+    
     [window_handle, rect] = init_screen(text_size, DEBUG);
     %sound_handle = init_soundout();
 
@@ -64,7 +83,7 @@ try  % Time info
 
     %%  INTRODUCTION - Present the task of ACT 1
     new_scene('welcome', window_handle, rect);
-    send_trigger('paradigm_start', ioObj, out_address); 
+    send_trigger('paradigm_start', trigger_sender); 
     if wait_and_check_esc(2)
         new_scene('end', window_handle, rect);
     end
@@ -74,15 +93,15 @@ try  % Time info
         CONTINUE_FROM_MIXED_ITERATION = CONTINUE_FROM_MIXED_ITERATION + 1;
         
     %%  ACT 1 - Eyes open / eyes closed
-    session_eye(window_handle, rect, ioObj, in_address, out_address, timing, [0,1]);
+    session_eye(window_handle, rect, trigger_sender, timing, [0,1]);
     
     %%  ACT 2 - Right / Left hand 
     seq = create_rnd_seq(2,SEQ_LENGTH);
-    session(window_handle, rect, ioObj, in_address, out_address, timing, seq, HAND, {MOTOR_MOVEMENT, IMAGINED_MOVEMENT});
+    session(window_handle, rect, trigger_sender, timing, seq, HAND, {MOTOR_MOVEMENT, IMAGINED_MOVEMENT});
   
     %%  ACT 3 - Right / Left foot
     seq = create_rnd_seq(2, SEQ_LENGTH);
-    session(window_handle, rect, ioObj, in_address, out_address, timing, seq, FOOT, {MOTOR_MOVEMENT, IMAGINED_MOVEMENT});
+    session(window_handle, rect, trigger_sender, timing, seq, FOOT, {MOTOR_MOVEMENT, IMAGINED_MOVEMENT});
     end
     
     %%  ACT 4 - Imagined MIXED
@@ -94,17 +113,17 @@ try  % Time info
         end
         
         seq = create_rnd_seq(4, SEQ_LENGTH);
-        session(window_handle, rect, ioObj, in_address, out_address, timing, seq, MIXED, {IMAGINED_MOVEMENT});
+        session(window_handle, rect, trigger_sender, timing, seq, MIXED, {IMAGINED_MOVEMENT});
     end
 
     %%  FINALE
-    send_trigger('paradigm_end', ioObj, out_address); 
+    send_trigger('paradigm_end', trigger_sender); 
     new_scene('thanks', window_handle, rect);
     wait_and_check_esc(timing('pause'))
     new_scene('end', window_handle, rect);
 
 catch
-    send_trigger('esc_record', ioObj, out_address);
+    send_trigger('esc_record', trigger_sender);
     ShowCursor;
     Screen('CloseAll');
     if mixed_ind > 0
