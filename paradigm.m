@@ -9,6 +9,7 @@ close all;
 lang = 'hun'; % eng, hun
 text_size = 40; % MAX 40
 setup = 'portable'; % lab, protable
+screen_num = 2; % 0, 1, 2
 CONTINUE_FROM_MIXED_ITERATION = 0; % if something goes wrong, and you have to restart the paradigm, 
                                    % you can specify where do you want to continue...
                                    
@@ -63,10 +64,7 @@ try  % Time info
     switch setup
         case 'portable'
             addpath(Psycho_path);
-            rcc = bv_rcc('localhost', 6700);
-            open_recorder(rcc);
-            view_impedance(rcc);
-            trigger_sender.bv_rcc = rcc;
+            trigger_sender = init_portable_setup(trigger_sender, 'localhost', 6700);
             
         case 'lab'
             trigger_sender.ioObj = ioObj;
@@ -76,7 +74,7 @@ try  % Time info
             error([setup, ' setup is not defined.'])
     end
     
-    [window_handle, rect] = init_screen(text_size, DEBUG);
+    [window_handle, rect] = init_screen(text_size, screen_num, DEBUG);
     %sound_handle = init_soundout();
 
     new_scene('black', window_handle, rect);
@@ -123,6 +121,11 @@ try  % Time info
     new_scene('end', window_handle, rect);
 
 catch
+    if strcmp(setup, 'portable')
+        stop_recording(trigger_sender.bv_rcc);
+        close_recorder(trigger_sender.bv_rcc);
+    end
+    
     send_trigger('esc_record', trigger_sender);
     ShowCursor;
     Screen('CloseAll');
