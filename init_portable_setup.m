@@ -1,15 +1,29 @@
 function trigger_sender = init_portable_setup(trigger_sender, ip, port)
 %INIT_PORTABLE_SETUP initialize bci record setup
 %   This function opens BrainVision Recorder and also BrainVision Remote
-%   Control Client
+%   Control
+
+program = 'RemoteControlServer.exe';
+[~, result] = system(['tasklist /FI "imagename eq ' program '" /fo table /nh']);
+if contains(result, program)
+    !taskkill -f -im RemoteControlServer.exe
+    pause(0.2);
+end
 ! C:\Vision\RemoteControlServer\RemoteControlServer.exe &
+
 rcc = bv_rcc(ip, port);
 trigger_sender.bv_rcc = rcc;
 
+
 open_recorder(rcc);
 wait_till_open(rcc);
+
+h = actxserver('WScript.Shell');
+h.AppActivate('Recorder');
+
 view_impedance(rcc);
-wait_till_acquisition(rcc)
+wait_till_acquisition(rcc);
+WaitSecs(0.5);
 
 if ~is_recording(rcc)
     exp = [];

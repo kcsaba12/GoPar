@@ -14,7 +14,7 @@ CONTINUE_FROM_MIXED_ITERATION = 0; % if something goes wrong, and you have to re
                                    % you can specify where do you want to continue...
                                    
 %% other parameters
-DEBUG = true;
+% DEBUG = true;
 % USE_SHORT_TIME = false;
 
 Psycho_path = 'C:\Users\Csabi\AppData\Roaming\MathWorks\MATLAB Add-Ons\Collections\Psychtoolbox-3\Psychtoolbox-3-Psychtoolbox-3-1621645\Psychtoolbox\PsychBasic\MatlabWindowsFilesR2007a\';
@@ -121,12 +121,13 @@ try  % Time info
     new_scene('end', window_handle, rect);
 
 catch
+    send_trigger('esc_record', trigger_sender);
+    
     if strcmp(setup, 'portable')
         stop_recording(trigger_sender.bv_rcc);
         close_recorder(trigger_sender.bv_rcc);
     end
     
-    send_trigger('esc_record', trigger_sender);
     ShowCursor;
     Screen('CloseAll');
     if mixed_ind > 0

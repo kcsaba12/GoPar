@@ -18,6 +18,10 @@ classdef bv_rcc
             fopen(obj.tcp);
         end
         
+        function delete(obj)
+            fclose(obj.tcp);
+        end
+        
 %         function clear_data(obj)
 %             flushinput(obj.bv_rcc)
 %         end
@@ -41,8 +45,8 @@ classdef bv_rcc
             state = strtrim(msg{2});
         end
         
-        function wait_till(obj, message, code)
-%             clear_data(obj)
+        function exception = wait_till(obj, message, code, esc_state)
+            exception = false;
             code = num2str(code);
 %             send_message(obj, message);
             state = '';
@@ -52,6 +56,11 @@ classdef bv_rcc
 %                 state = split(message, ':');
                 send_message(obj, message);
                 state = check_state(obj, message);
+                
+                if exist('esc_state', 'var') && contains(state, esc_state)
+                    exception = true;
+                    return;
+                end
                 
                 WaitSecs(0.1);
             end
@@ -100,7 +109,11 @@ classdef bv_rcc
         end
         
         function wait_till_open(obj)
-            wait_till(obj, 'AP', 1);
+            if wait_till(obj, 'AP', 1, 'Exception')
+                ME = MException('BrainVisionError:Appstatus',...
+                'Brain Vision throw an error. Check the remote server!');
+                throw(ME);
+            end
         end
         
         function wait_till_acquisition(obj)
