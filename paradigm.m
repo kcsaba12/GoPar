@@ -1,36 +1,39 @@
 %% EEG / BCI paradigm
 % author: András Bohn, bohn.andras.benedek@hallgato.ppke.hu
 % upgrader: Csaba Köllõd, kollod.csaba@itk.ppke.hu
-% version: 3.2
+% version: 4
 clear all;
 close all;
 
 % THINGS TO SET:
 lang = 'hun'; % eng, hun
 text_size = 40; % MAX 40
+paradigm_tasks = 'a'; % 'a', 'b' 
+    % a - left hand, right hand, left foot, right foot
+    % b - left hand, right hand, booth hands, booth foots
 setup = 'portable'; % lab, protable
-screen_num = 2; % 0, 1, 2
+screen_num = 2; % 0, 1, 2 
 CONTINUE_FROM_MIXED_ITERATION = 0; % if something goes wrong, and you have to restart the paradigm, 
                                    % you can specify where do you want to continue...
                                    
 %% other parameters
 % DEBUG = true;
-% USE_SHORT_TIME = false;
+% USE_SHORT_TIME = true;
 
 Psycho_path = 'C:\Users\Csabi\AppData\Roaming\MathWorks\MATLAB Add-Ons\Collections\Psychtoolbox-3\Psychtoolbox-3-Psychtoolbox-3-1621645\Psychtoolbox\PsychBasic\MatlabWindowsFilesR2007a\';
 
 % constants
-HAND = 'hand';
-FOOT = 'foot';
-MIXED = 'hand_foot';
-MOTOR_MOVEMENT = '_m';
-IMAGINED_MOVEMENT = '_mi';
+TASK_12 = '12';
+TASK_34 = '34';
+MIXED = 'mixed_1234';
+MOTOR_MOVEMENT = 'm';
+IMAGINED_MOVEMENT = 'mi';
 SEQ_LENGTH = 4;
 NUM_MIXED = 10;
 global LANGUAGE;
 
 %% INIT
-LANGUAGE = load_language(lang);
+LANGUAGE = load_language(lang,  paradigm_tasks);
 
 if ~exist('DEBUG','var')
     DEBUG = false;
@@ -94,12 +97,12 @@ try  % Time info
     session_eye(window_handle, rect, trigger_sender, timing, [0,1]);
     
     %%  ACT 2 - Right / Left hand 
-    seq = create_rnd_seq(2,SEQ_LENGTH);
-    session(window_handle, rect, trigger_sender, timing, seq, HAND, {MOTOR_MOVEMENT, IMAGINED_MOVEMENT});
+    seq = create_rnd_seq([1 2], SEQ_LENGTH);
+    session(window_handle, rect, trigger_sender, timing, seq, TASK_12, {MOTOR_MOVEMENT, IMAGINED_MOVEMENT});
   
     %%  ACT 3 - Right / Left foot
-    seq = create_rnd_seq(2, SEQ_LENGTH);
-    session(window_handle, rect, trigger_sender, timing, seq, FOOT, {MOTOR_MOVEMENT, IMAGINED_MOVEMENT});
+    seq = create_rnd_seq([3 4], SEQ_LENGTH);
+    session(window_handle, rect, trigger_sender, timing, seq, TASK_34, {MOTOR_MOVEMENT, IMAGINED_MOVEMENT});
     end
     
     %%  ACT 4 - Imagined MIXED
@@ -110,7 +113,7 @@ try  % Time info
             new_scene('end', window_handle, rect);
         end
         
-        seq = create_rnd_seq(4, SEQ_LENGTH);
+        seq = create_rnd_seq(1:4, SEQ_LENGTH);
         session(window_handle, rect, trigger_sender, timing, seq, MIXED, {IMAGINED_MOVEMENT});
     end
 
@@ -126,6 +129,8 @@ catch
     if strcmp(setup, 'portable')
         stop_recording(trigger_sender.bv_rcc);
         close_recorder(trigger_sender.bv_rcc);
+        pause(1);
+        !taskkill -f -im RemoteControlServer.exe
     end
     
     ShowCursor;

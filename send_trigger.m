@@ -15,21 +15,21 @@ switch option
         trigger(bv_rcc,'2');
     case 'closed_eye'
         trigger(bv_rcc,'3');
-    case 'right_hand_m'
+    case 'task_1_m'
         trigger(bv_rcc,'4');
-    case 'right_hand_mi'
+    case 'task_1_mi'
         trigger(bv_rcc,'5');
-    case 'left_hand_m'
+    case 'task_2_m'
         trigger(bv_rcc,'6');
-    case 'left_hand_mi'
+    case 'task_2_mi'
         trigger(bv_rcc,'7');
-    case 'right_foot_m'
+    case 'task_3_m'
         trigger(bv_rcc,'8');
-    case 'right_foot_mi'
+    case 'task_3_mi'
         trigger(bv_rcc,'9');
-    case 'left_foot_m'
+    case 'task_4_m'
         trigger(bv_rcc,'10');
-    case 'left_foot_mi'
+    case 'task_4_mi'
         trigger(bv_rcc,'11');
     case 'session_end'
         trigger(bv_rcc,'12');
@@ -69,21 +69,21 @@ switch option
         io64(ioObj,out_address,2);
     case 'closed_eye'
         io64(ioObj,out_address,3);
-    case 'right_hand_m'
+    case 'task_1_m'
         io64(ioObj,out_address,4);
-    case 'right_hand_mi'
+    case 'task_1_mi'
         io64(ioObj,out_address,5);
-    case 'left_hand_m'
+    case 'task_2_m'
         io64(ioObj,out_address,6);
-    case 'left_hand_mi'
+    case 'task_2_mi'
         io64(ioObj,out_address,7);
-    case 'right_foot_m'
+    case 'task_3_m'
         io64(ioObj,out_address,8);
-    case 'right_foot_mi'
+    case 'task_3_mi'
         io64(ioObj,out_address,9);
-    case 'left_foot_m'
+    case 'task_4_m'
         io64(ioObj,out_address,10);
-    case 'left_foot_mi'
+    case 'task_4_mi'
         io64(ioObj,out_address,11);
     case 'session_end'
         io64(ioObj,out_address,12);
