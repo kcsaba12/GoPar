@@ -10,39 +10,39 @@ end
 function send_trigger_to_local_host(option, bv_rcc)
 switch option
     case 'rest'
-        trigger(bv_rcc,'1');
+        trigger(bv_rcc,'S  1');
     case 'open_eye'
-        trigger(bv_rcc,'2');
+        trigger(bv_rcc,'S  2');
     case 'closed_eye'
-        trigger(bv_rcc,'3');
+        trigger(bv_rcc,'S  3');
     case 'task_1_m'
-        trigger(bv_rcc,'4');
+        trigger(bv_rcc,'S  4'); % RIGHT hand - check in language!
     case 'task_1_mi'
-        trigger(bv_rcc,'5');
+        trigger(bv_rcc,'S  5'); % RIGHT hand - check in language!
     case 'task_2_m'
-        trigger(bv_rcc,'6');
+        trigger(bv_rcc,'S  6');
     case 'task_2_mi'
-        trigger(bv_rcc,'7');
+        trigger(bv_rcc,'S  7');
     case 'task_3_m'
-        trigger(bv_rcc,'8');
+        trigger(bv_rcc,'S  8');
     case 'task_3_mi'
-        trigger(bv_rcc,'9');
+        trigger(bv_rcc,'S  9');
     case 'task_4_m'
-        trigger(bv_rcc,'10');
+        trigger(bv_rcc,'S 10');
     case 'task_4_mi'
-        trigger(bv_rcc,'11');
+        trigger(bv_rcc,'S 11');
     case 'session_end'
-        trigger(bv_rcc,'12');
+        trigger(bv_rcc,'S 12');
     case 'task_end'
-        trigger(bv_rcc,'13');
+        trigger(bv_rcc,'S 13');
     case 'paradigm_start'
-        trigger(bv_rcc,'14');
+        trigger(bv_rcc,'S 14');
     case 'paradigm_end'
-        trigger(bv_rcc,'15');
+        trigger(bv_rcc,'S 15');
     case 'session_start'
-        trigger(bv_rcc,'16');
+        trigger(bv_rcc,'S 16');
     case 'esc_record'
-        trigger(bv_rcc,'17');
+        trigger(bv_rcc,'S 17');
     otherwise
         error('Wrong input parameter in send_trigger function');
 end %switch

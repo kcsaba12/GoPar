@@ -50,15 +50,15 @@ function language = load_language(lang, paradigm_tasks)
                          imagine_treading, 'LEFT foot!      \n\n',...
                          middle_message, end_message];
                      
-                    language.task_1_m_text = 'Constrict LEFT hand';
-                    language.task_2_m_text = 'Constrict RIGHT hand';
-                    language.task_1_mi_text = 'Imagine LEFT hand constriction';
-                    language.task_2_mi_text = 'Imagine RIGHT hand constriction';
+                    language.task_1_m_text = 'Constrict RIGHT hand'; % CHECK in send trigger!!!
+                    language.task_2_m_text = 'Constrict LEFT hand';
+                    language.task_1_mi_text = 'Imagine RIGHT hand constriction';
+                    language.task_2_mi_text = 'Imagine LEFT hand constriction';
                     
-                    language.task_3_m_text = 'Tread with LEFT foot';
-                    language.task_4_m_text = 'Tread with RIGHT foot';
-                    language.task_3_mi_text = 'Imagine LEFT foot treading';
-                    language.task_4_mi_text = 'Imagine RIGHT foot treading';
+                    language.task_3_m_text = 'Tread with RIGHT foot';
+                    language.task_4_m_text = 'Tread with LEFT foot';
+                    language.task_3_mi_text = 'Imagine RIGHT foot treading';
+                    language.task_4_mi_text = 'Imagine LEFT foot treading';
                      
                 case 'b' % left hand, right hand, booth hands, booth foots
                     language.task_12 = ...
@@ -85,10 +85,10 @@ function language = load_language(lang, paradigm_tasks)
                          imagine_treading, 'BOTH foots!      \n\n',...
                          middle_message, end_message];
                      
-                    language.task_1_m_text = 'Constrict LEFT hand';
-                    language.task_2_m_text = 'Constrict RIGHT hand';
-                    language.task_1_mi_text = 'Imagine LEFT hand constriction';
-                    language.task_2_mi_text = 'Imagine RIGHT hand constriction';
+                    language.task_1_m_text = 'Constrict RIGHT hand'; % RIGHT!!!!
+                    language.task_2_m_text = 'Constrict LEFT hand';
+                    language.task_1_mi_text = 'Imagine RIGHT hand constriction';
+                    language.task_2_mi_text = 'Imagine LEFT hand constriction';
                     
                     language.task_3_m_text = 'Constrict BOTH hands';
                     language.task_4_m_text = 'Tread with BOTH foots';
@@ -155,15 +155,15 @@ function language = load_language(lang, paradigm_tasks)
                          imagine_treading, 'a bal lábad alatti szivacsot  \n\n',...
                          middle_message, end_message];
                      
-                    language.task_1_m_text = 'BAL ököl szorítás';
-                    language.task_2_m_text = 'JOBB ököl szorítás';
-                    language.task_1_mi_text = 'Elképzelt BAL ököl szorítás';
-                    language.task_2_mi_text = 'Elképzelt JOBB ököl szorítás';
+                    language.task_1_m_text = 'JOBB ököl szorítás';
+                    language.task_2_m_text = 'BAL ököl szorítás';
+                    language.task_1_mi_text = 'Elképzelt JOBB ököl szorítás';
+                    language.task_2_mi_text = 'Elképzelt BAL ököl szorítás';
                     
-                    language.task_3_m_text = 'BAL láb taposás';
-                    language.task_4_m_text = 'JOBB láb taposás';
-                    language.task_3_mi_text = 'Elképzelt BAL láb taposás';
-                    language.task_4_mi_text = 'Elképzelt JOBB láb taposás';
+                    language.task_3_m_text = 'JOBB láb taposás';
+                    language.task_4_m_text = 'BAL láb taposás';
+                    language.task_3_mi_text = 'Elképzelt JOBB láb taposás';
+                    language.task_4_mi_text = 'Elképzelt BAL láb taposás';
                      
                 case 'b'
                     language.task_12 = ...
@@ -190,10 +190,10 @@ function language = load_language(lang, paradigm_tasks)
                          imagine_treading, 'a bal lábad alatti szivacsot  \n\n',...
                          middle_message, end_message];
                      
-                    language.task_1_m_text = 'BAL ököl szorítás';
-                    language.task_2_m_text = 'JOBB ököl szorítás';
-                    language.task_1_mi_text = 'Elképzelt BAL ököl szorítás';
-                    language.task_2_mi_text = 'Elképzelt JOBB ököl szorítás';
+                    language.task_1_m_text = 'JOBB ököl szorítás';
+                    language.task_2_m_text = 'BAL ököl szorítás';
+                    language.task_1_mi_text = 'Elképzelt JOBB ököl szorítás';
+                    language.task_2_mi_text = 'Elképzelt BAL ököl szorítás';
                     
                     language.task_3_m_text = 'MINDKÉT ököl szorítása';
                     language.task_4_m_text = 'MINDKÉT láb taposása';

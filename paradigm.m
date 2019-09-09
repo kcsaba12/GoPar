@@ -9,8 +9,8 @@ close all;
 lang = 'hun'; % eng, hun
 text_size = 40; % MAX 40
 paradigm_tasks = 'a'; % 'a', 'b' 
-    % a - left hand, right hand, left foot, right foot
-    % b - left hand, right hand, booth hands, booth foots
+    % a - RIGHT hand, LEFT hand, RIGHT foot, LEFT foot
+    % b - RIGHT hand, LEFT hand, BOOTH hands, BOOTH foots
 setup = 'portable'; % lab, protable
 screen_num = 2; % 0, 1, 2 
 CONTINUE_FROM_MIXED_ITERATION = 0; % if something goes wrong, and you have to restart the paradigm, 
@@ -126,19 +126,21 @@ try  % Time info
 catch
     send_trigger('esc_record', trigger_sender);
     
-    if strcmp(setup, 'portable')
-        stop_recording(trigger_sender.bv_rcc);
-        close_recorder(trigger_sender.bv_rcc);
-        pause(1);
-        !taskkill -f -im RemoteControlServer.exe
-    end
-    
-    ShowCursor;
-    Screen('CloseAll');
     if mixed_ind > 0
         fprintf('\n\nESC button pressed during MIXED session %d\nIt is suggested to continue here.\nset CONTINUE_FROM_MIXED_ITERATION to %d\n\n', mixed_ind, mixed_ind); 
     end
-    if DEBUG
-        psychrethrow(psychlasterror);
-    end
+end  
+
+if strcmp(setup, 'portable')
+    stop_recording(trigger_sender.bv_rcc);
+    close_recorder(trigger_sender.bv_rcc);
+    pause(1);
+    !taskkill -f -im RemoteControlServer.exe
+end
+
+ShowCursor;
+Screen('CloseAll');
+
+if DEBUG
+    psychrethrow(psychlasterror);
 end
