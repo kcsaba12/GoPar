@@ -35,8 +35,7 @@ for i = 1:length(sequence)
         new_scene('end', window_handle, rect);
         return
     end
-    
-    Beeper('low');
+        
 %     send_trigger('task_end', ioObj, out_address);                          % 0.2s                   END
 
 %     if wait_and_check_esc(0.2)
@@ -45,7 +44,7 @@ for i = 1:length(sequence)
 %     end                                                                    % 0.2s
 
 end
-
+Beeper('low');
 send_trigger('session_end', trigger_sender);
 
 end

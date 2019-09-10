@@ -41,5 +41,6 @@ for seq = sequence
     end
 end
 send_trigger('session_end', trigger_sender);% 'fixation' s
+Beeper('low');
 % toc
 end
