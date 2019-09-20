@@ -1,20 +1,26 @@
 %% EEG / BCI paradigm
-% author: András Bohn, bohn.andras.benedek@hallgato.ppke.hu
-% upgrader: Csaba Köllõd, kollod.csaba@itk.ppke.hu
+% developer: Csaba Köllõd, kollod.csaba@itk.ppke.hu
+% base code: András Bohn, bohn.andras.benedek@hallgato.ppke.hu
 % version: 4
 clear all;
 close all;
 
 % THINGS TO SET:
 lang = 'hun'; % eng, hun
-text_size = 40; % MAX 40
-paradigm_tasks = 'a'; % 'a', 'b' 
+text_size = 39; % MAX 40
+paradigm_tasks = 'a';
     % a - RIGHT hand, LEFT hand, RIGHT foot, LEFT foot
     % b - RIGHT hand, LEFT hand, BOOTH hands, BOOTH foots
-setup = 'portable'; % lab, protable
-screen_num = 2; % 0, 1, 2 
-CONTINUE_FROM_MIXED_ITERATION = 0; % if something goes wrong, and you have to restart the paradigm, 
-                                   % you can specify where do you want to continue...
+setup = 'portable'; 
+    % lab - setup with 2 separated computers: paradigm and recorder
+    % protable - setup for one computer with BV Remote Control Server
+screen_num = 2; 
+    % 0 - booth displayers
+    % 1 - displayer #1
+    % 2 - displayer #2
+CONTINUE_FROM_MIXED_ITERATION = 0; 
+    % If something goes wrong, and you have to restart the paradigm, 
+    % you can specify where do you want to continue...
                                    
 %% other parameters
 % DEBUG = true;
@@ -58,6 +64,7 @@ elseif CONTINUE_FROM_MIXED_ITERATION > NUM_MIXED
     CONTINUE_FROM_MIXED_ITERATION = NUM_MIXED;
 end
 mixed_ind = 0;
+esc_hit = false;
 
 %%  PRELUDE - Initialize the environment
 try  % Time info    
@@ -125,10 +132,7 @@ try  % Time info
 
 catch
     send_trigger('esc_record', trigger_sender);
-    
-    if mixed_ind > 0
-        fprintf('\n\nESC button pressed during MIXED session %d\nIt is suggested to continue here.\nset CONTINUE_FROM_MIXED_ITERATION to %d\n\n', mixed_ind, mixed_ind); 
-    end
+    esc_hit = true;
 end  
 
 if strcmp(setup, 'portable')
@@ -136,6 +140,10 @@ if strcmp(setup, 'portable')
     close_recorder(trigger_sender.bv_rcc);
     pause(1);
     !taskkill -f -im RemoteControlServer.exe
+end
+
+if esc_hit && mixed_ind > 0
+    fprintf('\n\nESC button pressed during MIXED session %d\nIt is suggested to continue here.\nset CONTINUE_FROM_MIXED_ITERATION to %d\n\n', mixed_ind, mixed_ind); 
 end
 
 ShowCursor;
