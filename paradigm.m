@@ -11,6 +11,8 @@ text_size = 39; % MAX 40
 paradigm_tasks = 'a';
     % a - RIGHT hand, LEFT hand, RIGHT foot, LEFT foot
     % b - RIGHT hand, LEFT hand, BOOTH hands, BOOTH foots
+    % c - RIGHT hand, LEFT hand, BOOTH foots, CALM
+    % d - ACTIVE, CALM
 setup = 'portable'; 
     % lab - setup with 2 separated computers: paradigm and recorder
     % protable - setup for one computer with BV Remote Control Server
@@ -21,9 +23,12 @@ screen_num = 2;
 CONTINUE_FROM_MIXED_ITERATION = 0; 
     % If something goes wrong, and you have to restart the paradigm, 
     % you can specify where do you want to continue...
+PRERECORD_FOR_GAME_PLAY = false;
+    % If true the real-imagined training will be left out and the number of
+    % mixed sessions will be decreased to 5.
                                    
 %% other parameters
-% DEBUG = true;
+DEBUG = true;
 % USE_SHORT_TIME = true;
 
 Psycho_path = 'C:\Users\Csabi\AppData\Roaming\MathWorks\MATLAB Add-Ons\Collections\Psychtoolbox-3\Psychtoolbox-3-Psychtoolbox-3-1621645\Psychtoolbox\PsychBasic\MatlabWindowsFilesR2007a\';
@@ -35,11 +40,19 @@ MIXED = 'mixed_1234';
 MOTOR_MOVEMENT = 'm';
 IMAGINED_MOVEMENT = 'mi';
 SEQ_LENGTH = 4;
+DO_REAL_IMAGINE_TRAINING = true;
+    % If it is false real-imagined movement training will be left out.
 NUM_MIXED = 10;
+    % Number of mixed iteration. Default is false.
 global LANGUAGE;
 
 %% INIT
 LANGUAGE = load_language(lang,  paradigm_tasks);
+
+if PRERECORD_FOR_GAME_PLAY
+    DO_REAL_IMAGINE_TRAINING = false;
+    NUM_MIXED = 5;
+end
 
 if ~exist('DEBUG','var')
     DEBUG = false;
@@ -101,15 +114,17 @@ try  % Time info
         CONTINUE_FROM_MIXED_ITERATION = CONTINUE_FROM_MIXED_ITERATION + 1;
         
     %%  ACT 1 - Eyes open / eyes closed
-    session_eye(window_handle, rect, trigger_sender, timing, [0,1]);
+        session_eye(window_handle, rect, trigger_sender, timing, [0,1]);
     
-    %%  ACT 2 - Right / Left hand 
-    seq = create_rnd_seq([1 2], SEQ_LENGTH);
-    session(window_handle, rect, trigger_sender, timing, seq, TASK_12, {MOTOR_MOVEMENT, IMAGINED_MOVEMENT});
+        if DO_REAL_IMAGINE_TRAINING
+    %%  ACT 2 - Task 1/2 
+            seq = create_rnd_seq([1 2], SEQ_LENGTH);
+            session(window_handle, rect, trigger_sender, timing, seq, TASK_12, {MOTOR_MOVEMENT, IMAGINED_MOVEMENT});
   
-    %%  ACT 3 - Right / Left foot
-    seq = create_rnd_seq([3 4], SEQ_LENGTH);
-    session(window_handle, rect, trigger_sender, timing, seq, TASK_34, {MOTOR_MOVEMENT, IMAGINED_MOVEMENT});
+    %%  ACT 3 - Task 3/4
+            seq = create_rnd_seq([3 4], SEQ_LENGTH);
+            session(window_handle, rect, trigger_sender, timing, seq, TASK_34, {MOTOR_MOVEMENT, IMAGINED_MOVEMENT});
+        end
     end
     
     %%  ACT 4 - Imagined MIXED
