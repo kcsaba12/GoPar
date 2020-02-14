@@ -4,7 +4,56 @@ switch trigger_sender.setup
         send_trigger_to_local_host(option, trigger_sender.bv_rcc)
     case 'lab'
         send_trigger_parallel(option, trigger_sender.ioObj, trigger_sender.out_address)
+    case 'epoc'
+        send_trigger_to_epoc(option, trigger_sender.s)
+    otherwise
+        error([setup, ' setup is not defined.'])
 end
+
+
+function send_trigger_to_epoc(option, serial)
+    global trigger_list;
+    fprintf(serial, 12);
+switch option
+    case 'rest'
+        trigger_list{end+1} = 'Stimulus/S  1';
+    case 'open_eye'
+        trigger_list{end+1} = 'Stimulus/S  2';
+    case 'closed_eye'
+        trigger_list{end+1} = 'Stimulus/S  3';
+    case 'task_1_m'
+        trigger_list{end+1} = 'Stimulus/S  4'; % RIGHT hand - check in language!
+    case 'task_1_mi'
+        trigger_list{end+1} = 'Stimulus/S  5'; % RIGHT hand - check in language!
+    case 'task_2_m'
+        trigger_list{end+1} = 'Stimulus/S  6';
+    case 'task_2_mi'
+        trigger_list{end+1} = 'Stimulus/S  7';
+    case 'task_3_m'
+        trigger_list{end+1} = 'Stimulus/S  8';
+    case 'task_3_mi'
+        trigger_list{end+1} = 'Stimulus/S  9';
+    case 'task_4_m'
+        trigger_list{end+1} = 'Stimulus/S 10';
+    case 'task_4_mi'
+        trigger_list{end+1} = 'Stimulus/S 11';
+    case 'session_end'
+        trigger_list{end+1} = 'Stimulus/S 12';
+    case 'task_end'
+        trigger_list{end+1} = 'Stimulus/S 13';
+    case 'paradigm_start'
+        trigger_list{end+1} = 'Stimulus/S 14';
+    case 'paradigm_end'
+        trigger_list{end+1} = 'Stimulus/S 15';
+    case 'session_start'
+        trigger_list{end+1} = 'Stimulus/S 16';
+    case 'esc_record'
+        trigger_list{end+1} = 'Stimulus/S 17';
+    otherwise
+        error('Wrong input parameter in send_trigger function');
+end %switch
+
+WaitSecs(0.2);
 end
 
 function send_trigger_to_local_host(option, bv_rcc)
@@ -104,4 +153,5 @@ end %switch
 WaitSecs(0.2);
 io64(ioObj, out_address, 0);
 
+end
 end

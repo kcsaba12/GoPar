@@ -1,7 +1,5 @@
 # Please specify folders and files, which are not important to upload...
 
-
-
 # folders
 
 
@@ -9,8 +7,7 @@
 .directory
 *sandbox*.m
 *~
-
 ~*
 *.[oa]
-
 *.asv
+*.mat

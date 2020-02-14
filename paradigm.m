@@ -8,7 +8,7 @@ close all;
 % THINGS TO SET:
 lang = 'hun'; % eng, hun
 text_size = 39; % MAX 40
-paradigm_tasks = 'a';
+paradigm_tasks = 'd';
     % a - RIGHT hand, LEFT hand, RIGHT foot, LEFT foot
     % b - RIGHT hand, LEFT hand, BOOTH hands, BOOTH foots
     % c - RIGHT hand, LEFT hand, BOOTH foots, CALM
@@ -16,19 +16,20 @@ paradigm_tasks = 'a';
 setup = 'portable'; 
     % lab - setup with 2 separated computers: paradigm and recorder
     % protable - setup for one computer with BV Remote Control Server
+    % epoc - setup for Emotiv Epoc+
 screen_num = 2; 
-    % 0 - booth displayers
+    % 0 - booth displayers 
     % 1 - displayer #1
     % 2 - displayer #2
 CONTINUE_FROM_MIXED_ITERATION = 0; 
     % If something goes wrong, and you have to restart the paradigm, 
     % you can specify where do you want to continue...
-PRERECORD_FOR_GAME_PLAY = false;
+PRERECORD_FOR_GAME_PLAY = true;
     % If true the real-imagined training will be left out and the number of
     % mixed sessions will be decreased to 5.
                                    
 %% other parameters
-DEBUG = true;
+% DEBUG = true;
 % USE_SHORT_TIME = true;
 
 Psycho_path = 'C:\Users\Csabi\AppData\Roaming\MathWorks\MATLAB Add-Ons\Collections\Psychtoolbox-3\Psychtoolbox-3-Psychtoolbox-3-1621645\Psychtoolbox\PsychBasic\MatlabWindowsFilesR2007a\';
@@ -45,9 +46,11 @@ DO_REAL_IMAGINE_TRAINING = true;
 NUM_MIXED = 10;
     % Number of mixed iteration. Default is false.
 global LANGUAGE;
+global trigger_list;
 
 %% INIT
 LANGUAGE = load_language(lang,  paradigm_tasks);
+trigger_list = {};
 
 if PRERECORD_FOR_GAME_PLAY
     DO_REAL_IMAGINE_TRAINING = false;
@@ -89,7 +92,16 @@ try  % Time info
             addpath(Psycho_path);
             trigger_sender = init_portable_setup(trigger_sender, 'localhost', 6700);
             
+        case 'epoc'
+            addpath(Psycho_path);
+            d = msgbox({'Start EmotivXavierTestBench!';' ';'CHECK marker!!!'},'Information', 'help');
+            uiwait(d);
+            trigger_sender.s = serial('COM2', 'BaudRate', 19200,'DataBits', 8, 'Terminator','CR');
+            fopen(trigger_sender.s);
+            
         case 'lab'
+            d = warndlg('Start BrainVisionRecorder!','Information');
+            uiwait(d);
             trigger_sender.ioObj = ioObj;
             trigger_sender.out_address = out_address;
            
@@ -155,6 +167,11 @@ if strcmp(setup, 'portable')
     close_recorder(trigger_sender.bv_rcc);
     pause(1);
     !taskkill -f -im RemoteControlServer.exe
+end
+
+if strcmp(setup, 'epoc')
+    save triggers trigger_list
+    fclose(trigger_sender.s);
 end
 
 if esc_hit && mixed_ind > 0
