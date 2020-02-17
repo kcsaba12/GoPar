@@ -13,7 +13,7 @@ end
 
 function send_trigger_to_epoc(option, serial)
     global trigger_list;
-    fprintf(serial, 12);
+    fprintf(serial, 6);
 switch option
     case 'rest'
         trigger_list{end+1} = 'Stimulus/S  1';

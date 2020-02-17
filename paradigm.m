@@ -13,7 +13,7 @@ paradigm_tasks = 'd';
     % b - RIGHT hand, LEFT hand, BOOTH hands, BOOTH foots
     % c - RIGHT hand, LEFT hand, BOOTH foots, CALM
     % d - ACTIVE, CALM
-setup = 'portable'; 
+setup = 'epoc'; 
     % lab - setup with 2 separated computers: paradigm and recorder
     % protable - setup for one computer with BV Remote Control Server
     % epoc - setup for Emotiv Epoc+
@@ -85,8 +85,7 @@ esc_hit = false;
 %%  PRELUDE - Initialize the environment
 try  % Time info    
     trigger_sender.setup = setup;
-    [ioObj, out_address, in_address] = init_parallel_port();
-    trigger_sender.in_address = in_address;
+    
     switch setup
         case 'portable'
             addpath(Psycho_path);
@@ -96,10 +95,12 @@ try  % Time info
             addpath(Psycho_path);
             d = msgbox({'Start EmotivXavierTestBench!';' ';'CHECK marker!!!'},'Information', 'help');
             uiwait(d);
-            trigger_sender.s = serial('COM2', 'BaudRate', 19200,'DataBits', 8, 'Terminator','CR');
+            trigger_sender.s = serial('COM4', 'BaudRate', 19200,'DataBits', 8, 'Terminator','CR');
             fopen(trigger_sender.s);
             
         case 'lab'
+            [ioObj, out_address, in_address] = init_parallel_port();
+            trigger_sender.in_address = in_address;
             d = warndlg('Start BrainVisionRecorder!','Information');
             uiwait(d);
             trigger_sender.ioObj = ioObj;
