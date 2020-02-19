@@ -3,7 +3,7 @@ function session_eye(window_handle, rect, trigger_sender, timing, sequence)
 
 new_scene('task_eye', window_handle, rect);
 
-if (wait_for_user_response(trigger_sender.in_address))
+if (wait_for_user_response())
     new_scene('end', window_handle, rect);
     return
 end

@@ -13,7 +13,7 @@ paradigm_tasks = 'd';
     % b - RIGHT hand, LEFT hand, BOOTH hands, BOOTH foots
     % c - RIGHT hand, LEFT hand, BOOTH foots, CALM
     % d - ACTIVE, CALM
-setup = 'epoc'; 
+setup = 'portable'; 
     % lab - setup with 2 separated computers: paradigm and recorder
     % protable - setup for one computer with BV Remote Control Server
     % epoc - setup for Emotiv Epoc+
@@ -31,8 +31,6 @@ PRERECORD_FOR_GAME_PLAY = true;
 %% other parameters
 % DEBUG = true;
 % USE_SHORT_TIME = true;
-
-Psycho_path = 'C:\Users\Csabi\AppData\Roaming\MathWorks\MATLAB Add-Ons\Collections\Psychtoolbox-3\Psychtoolbox-3-Psychtoolbox-3-1621645\Psychtoolbox\PsychBasic\MatlabWindowsFilesR2007a\';
 
 % constants
 TASK_12 = '12';
@@ -88,11 +86,9 @@ try  % Time info
     
     switch setup
         case 'portable'
-            addpath(Psycho_path);
             trigger_sender = init_portable_setup(trigger_sender, 'localhost', 6700);
             
         case 'epoc'
-            addpath(Psycho_path);
             d = msgbox({'Start EmotivXavierTestBench!';' ';'CHECK marker!!!'},'Information', 'help');
             uiwait(d);
             trigger_sender.s = serial('COM4', 'BaudRate', 19200,'DataBits', 8, 'Terminator','CR');

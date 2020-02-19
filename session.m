@@ -2,7 +2,7 @@ function session(window_handle, rect, trigger_sender, timing, sequence, task, ex
 
 new_scene(['task_', task], window_handle, rect);
 
-if (wait_for_user_response(trigger_sender.in_address))
+if (wait_for_user_response())
 % if (wait_for_user_response(ioObj, in_address))
         new_scene('end', window_handle, rect);
         return

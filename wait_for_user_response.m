@@ -1,4 +1,4 @@
-function stop = wait_for_user_response(in_address)
+function stop = wait_for_user_response
 %function stop = wait_for_user_response(ioObj, in_address)
 
 %     % wait for user response
