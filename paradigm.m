@@ -89,7 +89,9 @@ try  % Time info
             trigger_sender = init_portable_setup(trigger_sender, 'localhost', 6700);
             
         case 'epoc'
-            d = msgbox({'Start EmotivXavierTestBench!';' ';'CHECK marker!!!'},'Information', 'help');
+            d = msgbox({'1) Start EmotivXavierTestBench!';'';...
+                '2) CHECK marker connection!!!''';...
+                '3) Save file!'},'Information', 'help');
             uiwait(d);
             trigger_sender.s = serial('COM4', 'BaudRate', 19200,'DataBits', 8, 'Terminator','CR');
             fopen(trigger_sender.s);
