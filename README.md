@@ -5,7 +5,7 @@ A paradigm handler program for Brain-Computer Interfaces.
 ## Description
 
 This project is originally designed for the BCI discipline of the Cybathlon 2020 competition by the Ebrainers.
-The code can be used for leading different types of paradigms. 
+The code can be used for leading different types of paradigms and save the proper labels with the EEG signals.
 
 ## Installation
 
@@ -61,7 +61,7 @@ If you use this code in a scientific publication, please cite us as:
 
 ## Licensing
 
-Bionic Applications is BSD-licenced (BSD-3-Clause):
+GoPar is BSD-licenced (BSD-3-Clause):
 
 > This software is OSI Certified Open Source Software. OSI Certified is a certification mark of the Open Source
 > Initiative.
