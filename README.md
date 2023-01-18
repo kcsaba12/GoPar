@@ -1,26 +1,6 @@
-[//]: # (```)
-
-[//]: # (cd existing_repo)
-
-[//]: # (git remote add origin https://dev.itk.ppke.hu/kolcs/mcc-flow.git)
-
-[//]: # (git branch -M main)
-
-[//]: # (git push -uf origin main)
-
-[//]: # (```)
-
-
-[//]: # (## Integrate with your tools)
-
-[//]: # (- [ ] [Set up project integrations]&#40;https://dev.itk.ppke.hu/kolcs/mcc-flow/-/settings/integrations&#41;)
-
-
-[//]: # (***)
-
 # General Offline Paradigm (GoPar)
 
-A paradigm handler program for Brain-Computer Interface.
+A paradigm handler program for Brain-Computer Interfaces.
 
 ## Description
 
